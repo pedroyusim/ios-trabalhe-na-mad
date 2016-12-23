@@ -19,6 +19,9 @@
 		B13B7BA91E0CACB100A6FF60 /* GitHubViewerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B13B7BA81E0CACB100A6FF60 /* GitHubViewerUITests.m */; };
 		B13B7BC11E0D2C1500A6FF60 /* RepositoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13B7BC01E0D2C1500A6FF60 /* RepositoriesViewController.m */; };
 		B13B7BC41E0D2DCD00A6FF60 /* RepositoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B13B7BC31E0D2DCD00A6FF60 /* RepositoryCell.m */; };
+		B13B7BC91E0DC83500A6FF60 /* GitHubAPIRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = B13B7BC81E0DC83500A6FF60 /* GitHubAPIRepository.m */; };
+		B13B7BCD1E0DC8BE00A6FF60 /* Repository.m in Sources */ = {isa = PBXBuildFile; fileRef = B13B7BCC1E0DC8BE00A6FF60 /* Repository.m */; };
+		B13B7BD01E0DC8D300A6FF60 /* Owner.m in Sources */ = {isa = PBXBuildFile; fileRef = B13B7BCF1E0DC8D300A6FF60 /* Owner.m */; };
 		FB9DAB47B75338C1038B35A8 /* libPods-GitHubViewerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E242B95B76D8A8B8CEC2EA42 /* libPods-GitHubViewerTests.a */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +68,13 @@
 		B13B7BC01E0D2C1500A6FF60 /* RepositoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepositoriesViewController.m; sourceTree = "<group>"; };
 		B13B7BC21E0D2DCD00A6FF60 /* RepositoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepositoryCell.h; sourceTree = "<group>"; };
 		B13B7BC31E0D2DCD00A6FF60 /* RepositoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepositoryCell.m; sourceTree = "<group>"; };
+		B13B7BC71E0DC83500A6FF60 /* GitHubAPIRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GitHubAPIRepository.h; sourceTree = "<group>"; };
+		B13B7BC81E0DC83500A6FF60 /* GitHubAPIRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GitHubAPIRepository.m; sourceTree = "<group>"; };
+		B13B7BCA1E0DC85C00A6FF60 /* Const.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Const.h; sourceTree = "<group>"; };
+		B13B7BCB1E0DC8BE00A6FF60 /* Repository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Repository.h; sourceTree = "<group>"; };
+		B13B7BCC1E0DC8BE00A6FF60 /* Repository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Repository.m; sourceTree = "<group>"; };
+		B13B7BCE1E0DC8D300A6FF60 /* Owner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Owner.h; sourceTree = "<group>"; };
+		B13B7BCF1E0DC8D300A6FF60 /* Owner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Owner.m; sourceTree = "<group>"; };
 		E242B95B76D8A8B8CEC2EA42 /* libPods-GitHubViewerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GitHubViewerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E973D5AD7525F929F100F18D /* Pods-GitHubViewerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubViewerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GitHubViewerUITests/Pods-GitHubViewerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		ED5D5AF51531C5FC6C1F797A /* Pods-GitHubViewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubViewer.release.xcconfig"; path = "Pods/Target Support Files/Pods-GitHubViewer/Pods-GitHubViewer.release.xcconfig"; sourceTree = "<group>"; };
@@ -160,6 +170,7 @@
 		B13B7B801E0CACB000A6FF60 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B13B7BCA1E0DC85C00A6FF60 /* Const.h */,
 				B13B7B811E0CACB000A6FF60 /* main.m */,
 				B13B7B941E0CACB000A6FF60 /* Info.plist */,
 				B13B7B8F1E0CACB000A6FF60 /* Assets.xcassets */,
@@ -223,6 +234,8 @@
 		B13B7BBD1E0D2AAC00A6FF60 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B13B7BC61E0DC80600A6FF60 /* Repository */,
+				B13B7BC51E0DC7FF00A6FF60 /* Objects */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -234,6 +247,26 @@
 				B13B7BC31E0D2DCD00A6FF60 /* RepositoryCell.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		B13B7BC51E0DC7FF00A6FF60 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				B13B7BCB1E0DC8BE00A6FF60 /* Repository.h */,
+				B13B7BCC1E0DC8BE00A6FF60 /* Repository.m */,
+				B13B7BCE1E0DC8D300A6FF60 /* Owner.h */,
+				B13B7BCF1E0DC8D300A6FF60 /* Owner.m */,
+			);
+			name = Objects;
+			sourceTree = "<group>";
+		};
+		B13B7BC61E0DC80600A6FF60 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				B13B7BC71E0DC83500A6FF60 /* GitHubAPIRepository.h */,
+				B13B7BC81E0DC83500A6FF60 /* GitHubAPIRepository.m */,
+			);
+			name = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -516,9 +549,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B13B7BCD1E0DC8BE00A6FF60 /* Repository.m in Sources */,
 				B13B7B851E0CACB000A6FF60 /* AppDelegate.m in Sources */,
 				B13B7B8E1E0CACB000A6FF60 /* GitHubViewer.xcdatamodeld in Sources */,
 				B13B7BC41E0D2DCD00A6FF60 /* RepositoryCell.m in Sources */,
+				B13B7BC91E0DC83500A6FF60 /* GitHubAPIRepository.m in Sources */,
+				B13B7BD01E0DC8D300A6FF60 /* Owner.m in Sources */,
 				B13B7BC11E0D2C1500A6FF60 /* RepositoriesViewController.m in Sources */,
 				B13B7B821E0CACB000A6FF60 /* main.m in Sources */,
 			);

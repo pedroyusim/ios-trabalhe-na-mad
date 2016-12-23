@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RepositoriesViewController : UITableViewController
+@interface RepositoriesViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) IBOutlet UITableView *tableViewRepos;
 
 @end
