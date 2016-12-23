@@ -11,13 +11,14 @@
 		77B57392FD66F1CB8937C069 /* libPods-GitHubViewerUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CFDB78D8D0A772BA833B3B6 /* libPods-GitHubViewerUITests.a */; };
 		B13B7B821E0CACB000A6FF60 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B13B7B811E0CACB000A6FF60 /* main.m */; };
 		B13B7B851E0CACB000A6FF60 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B13B7B841E0CACB000A6FF60 /* AppDelegate.m */; };
-		B13B7B881E0CACB000A6FF60 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13B7B871E0CACB000A6FF60 /* ViewController.m */; };
 		B13B7B8B1E0CACB000A6FF60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B13B7B891E0CACB000A6FF60 /* Main.storyboard */; };
 		B13B7B8E1E0CACB000A6FF60 /* GitHubViewer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B13B7B8C1E0CACB000A6FF60 /* GitHubViewer.xcdatamodeld */; };
 		B13B7B901E0CACB000A6FF60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B13B7B8F1E0CACB000A6FF60 /* Assets.xcassets */; };
 		B13B7B931E0CACB000A6FF60 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B13B7B911E0CACB000A6FF60 /* LaunchScreen.storyboard */; };
 		B13B7B9E1E0CACB100A6FF60 /* GitHubViewerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B13B7B9D1E0CACB100A6FF60 /* GitHubViewerTests.m */; };
 		B13B7BA91E0CACB100A6FF60 /* GitHubViewerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B13B7BA81E0CACB100A6FF60 /* GitHubViewerUITests.m */; };
+		B13B7BC11E0D2C1500A6FF60 /* RepositoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13B7BC01E0D2C1500A6FF60 /* RepositoriesViewController.m */; };
+		B13B7BC41E0D2DCD00A6FF60 /* RepositoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B13B7BC31E0D2DCD00A6FF60 /* RepositoryCell.m */; };
 		FB9DAB47B75338C1038B35A8 /* libPods-GitHubViewerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E242B95B76D8A8B8CEC2EA42 /* libPods-GitHubViewerTests.a */; };
 /* End PBXBuildFile section */
 
@@ -49,8 +50,6 @@
 		B13B7B811E0CACB000A6FF60 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B13B7B831E0CACB000A6FF60 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B13B7B841E0CACB000A6FF60 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B13B7B861E0CACB000A6FF60 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		B13B7B871E0CACB000A6FF60 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		B13B7B8A1E0CACB000A6FF60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B13B7B8D1E0CACB000A6FF60 /* GitHubViewer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GitHubViewer.xcdatamodel; sourceTree = "<group>"; };
 		B13B7B8F1E0CACB000A6FF60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -62,6 +61,10 @@
 		B13B7BA41E0CACB100A6FF60 /* GitHubViewerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitHubViewerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B13B7BA81E0CACB100A6FF60 /* GitHubViewerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GitHubViewerUITests.m; sourceTree = "<group>"; };
 		B13B7BAA1E0CACB100A6FF60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B13B7BBF1E0D2C1500A6FF60 /* RepositoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepositoriesViewController.h; sourceTree = "<group>"; };
+		B13B7BC01E0D2C1500A6FF60 /* RepositoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepositoriesViewController.m; sourceTree = "<group>"; };
+		B13B7BC21E0D2DCD00A6FF60 /* RepositoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepositoryCell.h; sourceTree = "<group>"; };
+		B13B7BC31E0D2DCD00A6FF60 /* RepositoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepositoryCell.m; sourceTree = "<group>"; };
 		E242B95B76D8A8B8CEC2EA42 /* libPods-GitHubViewerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GitHubViewerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E973D5AD7525F929F100F18D /* Pods-GitHubViewerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubViewerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GitHubViewerUITests/Pods-GitHubViewerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		ED5D5AF51531C5FC6C1F797A /* Pods-GitHubViewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubViewer.release.xcconfig"; path = "Pods/Target Support Files/Pods-GitHubViewer/Pods-GitHubViewer.release.xcconfig"; sourceTree = "<group>"; };
@@ -143,15 +146,12 @@
 		B13B7B7F1E0CACB000A6FF60 /* GitHubViewer */ = {
 			isa = PBXGroup;
 			children = (
-				B13B7B831E0CACB000A6FF60 /* AppDelegate.h */,
-				B13B7B841E0CACB000A6FF60 /* AppDelegate.m */,
-				B13B7B861E0CACB000A6FF60 /* ViewController.h */,
-				B13B7B871E0CACB000A6FF60 /* ViewController.m */,
-				B13B7B891E0CACB000A6FF60 /* Main.storyboard */,
-				B13B7B8F1E0CACB000A6FF60 /* Assets.xcassets */,
-				B13B7B911E0CACB000A6FF60 /* LaunchScreen.storyboard */,
-				B13B7B941E0CACB000A6FF60 /* Info.plist */,
-				B13B7B8C1E0CACB000A6FF60 /* GitHubViewer.xcdatamodeld */,
+				B13B7BBD1E0D2AAC00A6FF60 /* Model */,
+				B13B7BBE1E0D2AB200A6FF60 /* View */,
+				B13B7BBC1E0D2AA400A6FF60 /* Controller */,
+				B13B7BBB1E0D2A8B00A6FF60 /* Storyboard */,
+				B13B7BBA1E0D2A7F00A6FF60 /* Delegate */,
+				B13B7BB91E0D2A7700A6FF60 /* CoreData */,
 				B13B7B801E0CACB000A6FF60 /* Supporting Files */,
 			);
 			path = GitHubViewer;
@@ -161,6 +161,8 @@
 			isa = PBXGroup;
 			children = (
 				B13B7B811E0CACB000A6FF60 /* main.m */,
+				B13B7B941E0CACB000A6FF60 /* Info.plist */,
+				B13B7B8F1E0CACB000A6FF60 /* Assets.xcassets */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -181,6 +183,57 @@
 				B13B7BAA1E0CACB100A6FF60 /* Info.plist */,
 			);
 			path = GitHubViewerUITests;
+			sourceTree = "<group>";
+		};
+		B13B7BB91E0D2A7700A6FF60 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				B13B7B8C1E0CACB000A6FF60 /* GitHubViewer.xcdatamodeld */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+		B13B7BBA1E0D2A7F00A6FF60 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				B13B7B831E0CACB000A6FF60 /* AppDelegate.h */,
+				B13B7B841E0CACB000A6FF60 /* AppDelegate.m */,
+			);
+			name = Delegate;
+			sourceTree = "<group>";
+		};
+		B13B7BBB1E0D2A8B00A6FF60 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				B13B7B891E0CACB000A6FF60 /* Main.storyboard */,
+				B13B7B911E0CACB000A6FF60 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		B13B7BBC1E0D2AA400A6FF60 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B13B7BBF1E0D2C1500A6FF60 /* RepositoriesViewController.h */,
+				B13B7BC01E0D2C1500A6FF60 /* RepositoriesViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		B13B7BBD1E0D2AAC00A6FF60 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		B13B7BBE1E0D2AB200A6FF60 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B13B7BC21E0D2DCD00A6FF60 /* RepositoryCell.h */,
+				B13B7BC31E0D2DCD00A6FF60 /* RepositoryCell.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -463,9 +516,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B13B7B881E0CACB000A6FF60 /* ViewController.m in Sources */,
 				B13B7B851E0CACB000A6FF60 /* AppDelegate.m in Sources */,
 				B13B7B8E1E0CACB000A6FF60 /* GitHubViewer.xcdatamodeld in Sources */,
+				B13B7BC41E0D2DCD00A6FF60 /* RepositoryCell.m in Sources */,
+				B13B7BC11E0D2C1500A6FF60 /* RepositoriesViewController.m in Sources */,
 				B13B7B821E0CACB000A6FF60 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -617,6 +671,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = GitHubViewer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.pedroyusim.GitHubViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -629,6 +684,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = GitHubViewer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.pedroyusim.GitHubViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -704,6 +760,7 @@
 				B13B7BAF1E0CACB100A6FF60 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B13B7BB01E0CACB100A6FF60 /* Build configuration list for PBXNativeTarget "GitHubViewerTests" */ = {
 			isa = XCConfigurationList;
@@ -712,6 +769,7 @@
 				B13B7BB21E0CACB100A6FF60 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B13B7BB31E0CACB100A6FF60 /* Build configuration list for PBXNativeTarget "GitHubViewerUITests" */ = {
 			isa = XCConfigurationList;
@@ -720,6 +778,7 @@
 				B13B7BB51E0CACB100A6FF60 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
