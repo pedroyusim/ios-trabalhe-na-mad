@@ -249,4 +249,44 @@
     
 }
 
+- (void)cleanRepositoriesData {
+    NSFetchRequest *fetchOwners = [NSFetchRequest fetchRequestWithEntityName:@"Owner"];
+    NSBatchDeleteRequest *batchDeleteOwners = [[NSBatchDeleteRequest alloc] initWithFetchRequest:fetchOwners];
+    
+    NSError *errorOwnersFetch = nil;
+    
+    [self.appDel.persistentContainer.persistentStoreCoordinator executeRequest:batchDeleteOwners withContext:self.managedContext error:&errorOwnersFetch];
+    
+    if(errorOwnersFetch == nil) {
+        //Deu certo. Vamos limpar Repository
+        NSFetchRequest *fetchRepos = [NSFetchRequest fetchRequestWithEntityName:@"Repository"];
+        NSBatchDeleteRequest *batchDeleteRepos = [[NSBatchDeleteRequest alloc] initWithFetchRequest:fetchRepos];
+        
+        NSError *errorReposFetch = nil;
+        
+        [self.appDel.persistentContainer.persistentStoreCoordinator executeRequest:batchDeleteRepos withContext:self.managedContext error:&errorReposFetch];
+        
+        if(errorReposFetch == nil) {
+            NSLog(@"Limpamos todos os dados");
+            
+            self.arrayRepositoriesToShow = [NSMutableArray array];
+            
+            [self.tableViewRepos reloadData];
+        }
+    }
+}
+
+#pragma mark - Action Methods
+
+- (IBAction)barButtonRefreshClicked:(id)sender {
+    self.lastCachedPage = 0;
+    
+    [self cleanRepositoriesData];
+    
+    self.currentPage = 1;
+    
+    [self callSwiftRepos:YES];
+    
+}
+
 @end

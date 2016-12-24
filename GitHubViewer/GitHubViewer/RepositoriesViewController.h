@@ -11,4 +11,6 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableViewRepos;
 
+- (IBAction)barButtonRefreshClicked:(id)sender;
+
 @end
