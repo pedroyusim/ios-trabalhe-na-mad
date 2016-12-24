@@ -2,7 +2,6 @@
 //  Const.h
 //  GitHubViewer
 //
-//  Created by Pedro Yusim on 23/12/16.
 //  Copyright © 2016 Pedro Yusim. All rights reserved.
 //
 
@@ -25,6 +24,7 @@
 #define KEY_REPOSITORY_FORKS_COUNT @"forksCount"
 #define KEY_REPOSITORY_STARS_COUNT @"stargazersCount"
 #define KEY_REPOSITORY_OWNER @"owner"
+#define KEY_REPOSITORY_PAGE @"page"
 
 //Owner
 #define KEY_OWNER_LOGIN @"login"

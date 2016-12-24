@@ -5,6 +5,22 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="72q-S7-fpz">
+            <objects>
+                <navigationController id="0d4-ux-eyx" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="b01-82-Uas">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="EMI-Lp-who" kind="relationship" relationship="rootViewController" id="U5o-ft-BNI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jjg-xk-jRT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-34" y="403"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="rJ1-y4-JiM">
             <objects>
@@ -18,10 +34,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="oOL-MV-d8p"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JLK-3c-lML" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-33" y="386"/>
+            <point key="canvasLocation" x="919" y="403"/>
         </scene>
         <!--Repositórios-->
         <scene sceneID="EC1-gV-6EP">
@@ -202,13 +219,13 @@
             </objects>
             <point key="canvasLocation" x="-33" y="-269"/>
         </scene>
-        <!--Split View Controller-->
+        <!--My Split View Controller-->
         <scene sceneID="jLA-Uv-aGN">
             <objects>
-                <splitViewController id="2ng-L5-HZw" sceneMemberID="viewController">
+                <splitViewController storyboardIdentifier="splitController" id="2ng-L5-HZw" customClass="MySplitViewController" sceneMemberID="viewController">
                     <connections>
                         <segue destination="qW9-xl-jD4" kind="relationship" relationship="masterViewController" id="hw3-w6-z0Z"/>
-                        <segue destination="EMI-Lp-who" kind="relationship" relationship="detailViewController" id="FnJ-S7-kc8"/>
+                        <segue destination="0d4-ux-eyx" kind="relationship" relationship="detailViewController" id="IJi-DB-69x"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3bZ-ob-r8q" userLabel="First Responder" sceneMemberID="firstResponder"/>

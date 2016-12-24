@@ -2,7 +2,6 @@
 //  AppDelegate.m
 //  GitHubViewer
 //
-//  Created by Lorna Kemp on 22/12/16.
 //  Copyright © 2016 Pedro Yusim. All rights reserved.
 //
 
@@ -17,6 +16,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
     return YES;
 }
 
