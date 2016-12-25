@@ -10,8 +10,6 @@
 
 @interface Repository : NSObject
 
-@property NSNumber *id;
-
 @property NSString *name;
 
 @property NSString *repositoryDescription;

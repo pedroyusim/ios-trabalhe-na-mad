@@ -14,4 +14,6 @@
 @required
 -(void)selectRepository:(NSManagedObject *)repo;
 
+-(void)allDataCleaned;
+
 @end

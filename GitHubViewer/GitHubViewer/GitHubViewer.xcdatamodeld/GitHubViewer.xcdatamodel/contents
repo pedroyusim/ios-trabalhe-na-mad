@@ -14,7 +14,6 @@
     </entity>
     <entity name="Repository" syncable="YES">
         <attribute name="forksCount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="page" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="repositoryDescription" optional="YES" attributeType="String" syncable="YES"/>
@@ -29,7 +28,7 @@
     <elements>
         <element name="Owner" positionX="-29" positionY="18" width="128" height="73"/>
         <element name="PullRequest" positionX="277" positionY="-183" width="128" height="133"/>
-        <element name="Repository" positionX="-18" positionY="-189" width="128" height="165"/>
+        <element name="Repository" positionX="-18" positionY="-189" width="128" height="150"/>
         <element name="User" positionX="207" positionY="9" width="128" height="75"/>
     </elements>
 </model>

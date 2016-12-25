@@ -15,6 +15,7 @@
 #import "AppDelegate.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "PullRequestsViewController.h"
+#import "CoreDataManager.h"
 
 @interface RepositoriesViewController ()
 
@@ -36,9 +37,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    //TODO:REMOVER LOG
-    NSLog(@"GITHUBVIEWER viewDidLoad");
     
     //Inicializando variaveis
     self.arrayRepositoriesToShow = [NSMutableArray array];
@@ -64,14 +62,10 @@
 #pragma mark - TableView Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    //TODO:REMOVER LOG
-    NSLog(@"GITHUBVIEWER numberOfSectionsInTableView");
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //TODO:REMOVER LOG
-    NSLog(@"GITHUBVIEWER numberOfRowsInSection -> %lu", (unsigned long)[self.arrayRepositoriesToShow count]);
     if(self.arrayRepositoriesToShow != nil && [self.arrayRepositoriesToShow count] > 0) {
         return [self.arrayRepositoriesToShow count];
     }
@@ -80,8 +74,6 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //TODO:REMOVER LOG
-    NSLog(@"GITHUBVIEWER cellForRowAtIndexPath");
     if(self.arrayRepositoriesToShow != nil && [self.arrayRepositoriesToShow count] > 0) {
         RepositoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"repoCell"];
         
@@ -100,6 +92,7 @@
         cell.labelOwnerFullName.text = @"";
         
         if(indexPath.row == [self.arrayRepositoriesToShow count] - 1 && self.shouldKeepReloadingPages) {
+            NSLog(@"CurrentPage: %d --- LastCachedPage: %d", self.currentPage, self.lastCachedPage);
             if(self.currentPage < self.lastCachedPage) {
                 //Neste caso, devemos carregar do CoreData a nova pagina.
                 self.currentPage++;
@@ -151,7 +144,6 @@
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         
         [[GitHubAPIRepository sharedRepository] callSearchSwiftRepos:params success:^(NSArray *respObj) {
-            NSLog(@"SUCCESS!!");
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             if(respObj != nil && [respObj count] > 0) {
                 [self addReposToArrayAndCoreData:respObj];
@@ -162,13 +154,12 @@
             }
             
         } error:^(NSError *error) {
-            NSLog(@"ERROR!!!");
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             self.shouldKeepReloadingPages = NO;
         }];
     } else {
         //Neste caso nao carregamos webservice, pois ja tinhamos tudo o que precisavamos exibir.
-        NSLog(@"Pagina toda em cache");
+        
     }
     
 }
@@ -176,27 +167,7 @@
 -(void)addReposToArrayAndCoreData:(NSArray *)arrayRepos {
     //Adicionando a CoreData
     for (Repository *repo in arrayRepos) {
-        NSEntityDescription *ownerEntity = [NSEntityDescription entityForName:@"Owner" inManagedObjectContext:self.managedContext];
-        
-        NSManagedObject *ownerObject = [[NSManagedObject alloc] initWithEntity:ownerEntity insertIntoManagedObjectContext:self.managedContext];
-        
-        [ownerObject setValue:repo.owner.login forKey:KEY_OWNER_LOGIN];
-        [ownerObject setValue:repo.owner.avatarUrl forKey:KEY_OWNER_AVATAR_URL];
-        
-        NSEntityDescription *repoEntity = [NSEntityDescription entityForName:@"Repository" inManagedObjectContext:self.managedContext];
-        
-        NSManagedObject *repoObject = [[NSManagedObject alloc] initWithEntity:repoEntity insertIntoManagedObjectContext:self.managedContext];
-        
-        [repoObject setValue:repo.id forKey:KEY_REPOSITORY_ID];
-        [repoObject setValue:repo.name forKey:KEY_REPOSITORY_NAME];
-        [repoObject setValue:repo.repositoryDescription forKey:KEY_REPOSITORY_DESCRIPTION];
-        [repoObject setValue:repo.forksCount forKey:KEY_REPOSITORY_FORKS_COUNT];
-        [repoObject setValue:repo.stargazersCount forKey:KEY_REPOSITORY_STARS_COUNT];
-        [repoObject setValue:[NSNumber numberWithInteger:self.currentPage] forKey:KEY_REPOSITORY_PAGE];
-        
-        [repoObject setValue:ownerObject forKey:KEY_REPOSITORY_OWNER];
-        
-        [self.appDel saveContext];
+        NSManagedObject *repoObject = [[CoreDataManager sharedManager] insertRepository:repo withPage:self.currentPage];
         
         [self.arrayRepositoriesToShow addObject:repoObject];
     }
@@ -207,82 +178,61 @@
 }
 
 - (void)tryToLoadCachedRepositories {
-    
-    NSFetchRequest *fetchRepos = [NSFetchRequest fetchRequestWithEntityName:@"Repository"];
-    
-    //Buscando apenas os repositorios da primeira pagina.
-    [fetchRepos setPredicate:[NSPredicate predicateWithFormat:@"page == %d", 1]];
-    
     NSError *error = nil;
     
-    NSArray *repositories = [self.managedContext executeFetchRequest:fetchRepos error:&error];
+    NSError *allReposError = nil;
     
-    if(error == nil) {
+    NSArray *repositories = [[CoreDataManager sharedManager] fetchRepositoriesForPage:1 withError:error];
+    
+    NSArray *allStoredRepos = [[CoreDataManager sharedManager] fetchAllStoreRepositoriesWithError:allReposError];
+    
+    if(error == nil && allReposError == nil) {
         if(repositories != nil && [repositories count] > 0) {
-            NSLog(@"Conseguimos carregar dados");
             self.arrayRepositoriesToShow = [NSMutableArray arrayWithArray:repositories];
             
             //Precisamos saber até que página já exibimos e assim atualizar lastCachedPage
-            NSNumber *ultimaPagina = [[repositories lastObject] valueForKey:KEY_REPOSITORY_PAGE];
+            NSNumber *ultimaPagina = [[allStoredRepos lastObject] valueForKey:KEY_REPOSITORY_PAGE];
             
-            self.lastCachedPage = [ultimaPagina intValue] + 1;
+            self.lastCachedPage = [ultimaPagina intValue];
             
             [self.tableViewRepos reloadData];
         }
     } else {
-        NSLog(@"Erro ao buscar repositorios");
+        //Erro ao buscar repositorios
     }
     
 }
 
 - (void)loadNextPage {
-    
-    NSFetchRequest *fetchRepos = [NSFetchRequest fetchRequestWithEntityName:@"Repository"];
-    
-    //Buscando apenas os repositorios da primeira pagina.
-    [fetchRepos setPredicate:[NSPredicate predicateWithFormat:@"page == %d", self.currentPage]];
-    
     NSError *error = nil;
     
-    NSArray *repositories = [self.managedContext executeFetchRequest:fetchRepos error:&error];
+    NSArray *repositories = [[CoreDataManager sharedManager] fetchRepositoriesForPage:self.currentPage withError:error];
     
     if(error == nil) {
         if(repositories != nil && [repositories count] > 0) {
-            NSLog(@"Conseguimos carregar dados");
+            //Conseguimos carregar dados
             [self.arrayRepositoriesToShow addObjectsFromArray:repositories];
             
             [self.tableViewRepos reloadData];
         }
     } else {
-        NSLog(@"Erro ao buscar repositorios");
+        //Erro ao buscar repositorios
     }
     
 }
 
 - (void)cleanRepositoriesData {
-    NSFetchRequest *fetchOwners = [NSFetchRequest fetchRequestWithEntityName:@"Owner"];
-    NSBatchDeleteRequest *batchDeleteOwners = [[NSBatchDeleteRequest alloc] initWithFetchRequest:fetchOwners];
     
-    NSError *errorOwnersFetch = nil;
+    NSError *errorCleanAllCoreData = nil;
     
-    [self.appDel.persistentContainer.persistentStoreCoordinator executeRequest:batchDeleteOwners withContext:self.managedContext error:&errorOwnersFetch];
+    [[CoreDataManager sharedManager] cleanAllCoreDataWithError:errorCleanAllCoreData];
     
-    if(errorOwnersFetch == nil) {
-        //Deu certo. Vamos limpar Repository
-        NSFetchRequest *fetchRepos = [NSFetchRequest fetchRequestWithEntityName:@"Repository"];
-        NSBatchDeleteRequest *batchDeleteRepos = [[NSBatchDeleteRequest alloc] initWithFetchRequest:fetchRepos];
+    if(errorCleanAllCoreData == nil) {
+        //Limpamos todos os dados
         
-        NSError *errorReposFetch = nil;
+        self.arrayRepositoriesToShow = [NSMutableArray array];
         
-        [self.appDel.persistentContainer.persistentStoreCoordinator executeRequest:batchDeleteRepos withContext:self.managedContext error:&errorReposFetch];
-        
-        if(errorReposFetch == nil) {
-            NSLog(@"Limpamos todos os dados");
-            
-            self.arrayRepositoriesToShow = [NSMutableArray array];
-            
-            [self.tableViewRepos reloadData];
-        }
+        [self.tableViewRepos reloadData];
     }
 }
 
@@ -292,6 +242,8 @@
     self.lastCachedPage = 0;
     
     [self cleanRepositoriesData];
+    
+    [self.delegate allDataCleaned];
     
     self.currentPage = 1;
     

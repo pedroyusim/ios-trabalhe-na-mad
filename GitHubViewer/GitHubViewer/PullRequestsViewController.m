@@ -23,8 +23,6 @@
 @implementation PullRequestsViewController
 
 - (void)viewDidLoad {
-    //TODO:Remover Log
-    NSLog(@"pullRequestsViewController viewDidLoad");
     [super viewDidLoad];
     
     if(self.arrayPullRequestsToShow == nil) {
@@ -38,8 +36,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    //TODO:Remover Log
-    NSLog(@"pullRequestsViewController viewWillAppear");
     
     if(self.arrayPullRequestsToShow != nil && [self.arrayPullRequestsToShow count] > 0) {
         [self.labelFirstSelection setHidden:YES];
@@ -148,6 +144,19 @@
     }
 }
 
+- (void)allDataCleaned {
+    //Neste momento MasterView limpou todos os dados.
+    
+    self.arrayPullRequestsToShow = [NSArray array];
+    
+    [self.labelFirstSelection setText:@"Por favor, selecione um repositório."];
+    
+    [self.labelFirstSelection setHidden:NO];
+    [self.tableViewPullRequests setHidden:YES];
+    
+    [self.tableViewPullRequests reloadData];
+}
+
 #pragma mark - Helper Methods
 
 - (void)callGetPullRequests:(NSManagedObject *)repository {
@@ -160,7 +169,6 @@
     
     [[GitHubAPIRepository sharedRepository] callGetPullRequests:params success:^(NSArray *respObj) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-        NSLog(@"success!!!");
         
         if(respObj != nil) {
             if([respObj count] > 0) {
@@ -182,8 +190,6 @@
         
     } error:^(NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-        
-        NSLog(@"failure!!!");
         
         [self.tableViewPullRequests setHidden:YES];
         [self.labelFirstSelection setHidden:NO];
