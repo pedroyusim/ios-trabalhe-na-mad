@@ -9,7 +9,7 @@
         <scene sceneID="72q-S7-fpz">
             <objects>
                 <navigationController id="0d4-ux-eyx" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="b01-82-Uas">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="b01-82-Uas">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.7843137255" green="0.50588235290000005" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -25,7 +25,7 @@
         <!--Pull Requests View Controller-->
         <scene sceneID="rJ1-y4-JiM">
             <objects>
-                <viewController id="EMI-Lp-who" customClass="PullRequestsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PullRequestsController" id="EMI-Lp-who" customClass="PullRequestsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ohn-5x-U8b"/>
                         <viewControllerLayoutGuide type="bottom" id="kEb-CA-BEW"/>
