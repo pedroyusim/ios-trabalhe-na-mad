@@ -14,6 +14,7 @@
 #import "GitHubAPIRepository.h"
 #import "AppDelegate.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "PullRequestsViewController.h"
 
 @interface RepositoriesViewController ()
 
@@ -119,7 +120,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    
+    //Chamar Controller de PullRequests
+    NSManagedObject *selectedRepo = [self.arrayRepositoriesToShow objectAtIndex:indexPath.row];
+    if(self.delegate) {
+        PullRequestsViewController *pullReqsController = (PullRequestsViewController *)self.delegate;
+        
+        [self.splitViewController showDetailViewController:pullReqsController.navigationController sender:nil];
+        
+        [self.delegate selectRepository:selectedRepo];
+    }
 }
 
 /*
@@ -178,6 +187,7 @@
         
         NSManagedObject *repoObject = [[NSManagedObject alloc] initWithEntity:repoEntity insertIntoManagedObjectContext:self.managedContext];
         
+        [repoObject setValue:repo.id forKey:KEY_REPOSITORY_ID];
         [repoObject setValue:repo.name forKey:KEY_REPOSITORY_NAME];
         [repoObject setValue:repo.repositoryDescription forKey:KEY_REPOSITORY_DESCRIPTION];
         [repoObject setValue:repo.forksCount forKey:KEY_REPOSITORY_FORKS_COUNT];

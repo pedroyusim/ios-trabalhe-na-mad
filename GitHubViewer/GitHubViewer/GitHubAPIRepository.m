@@ -74,4 +74,44 @@
     
 }
 
+- (void)callGetPullRequests:(NSDictionary *)params success:(void (^)(NSArray *respObj))success error:(void (^)(NSError *error)) failure {
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@/%@%@",API_URL,@"repos/", [params objectForKey:@"owner"], [params objectForKey:@"repository"],@"/pulls"]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (error) {
+            failure(nil);
+        } else {
+            @try {
+                NSArray *repos = (NSArray *)responseObject;
+                
+                if(repos != nil) {
+                    DCParserConfiguration *config = [DCParserConfiguration configuration];
+                    
+                    DCKeyValueObjectMapping *pullReqMapper = [DCKeyValueObjectMapping mapperForClass:[PullRequest class] andConfiguration:config];
+                    
+                    NSMutableArray *respArray = [NSMutableArray array];
+                    
+                    for (NSDictionary *dict in repos) {
+                        PullRequest *repo = [pullReqMapper parseDictionary:dict];
+                        
+                        [respArray addObject:repo];
+                    }
+                    
+                    success(respArray);
+                }
+            }
+            @catch (NSException *exception) {
+                success(nil);
+            }
+            
+        }
+    }];
+    [dataTask resume];
+    
+}
+
 @end

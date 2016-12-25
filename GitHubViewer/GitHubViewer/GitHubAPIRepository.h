@@ -12,11 +12,14 @@
 #import <DCKeyValueObjectMapping/DCObjectMapping.h>
 #import <DCKeyValueObjectMapping/DCParserConfiguration.h>
 #import "Repository.h"
+#import "PullRequest.h"
 
 @interface GitHubAPIRepository : NSObject
 
 + (id)sharedRepository;
 
 - (void)callSearchSwiftRepos:(NSDictionary *)params success:(void (^)(NSArray *respObj))success error:(void (^)(NSError *error)) failure;
+
+- (void)callGetPullRequests:(NSDictionary *)params success:(void (^)(NSArray *respObj))success error:(void (^)(NSError *error)) failure;
 
 @end

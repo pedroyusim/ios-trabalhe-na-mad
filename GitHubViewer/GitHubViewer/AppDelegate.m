@@ -6,6 +6,8 @@
 //
 
 #import "AppDelegate.h"
+#import "RepositoriesViewController.h"
+#import "PullRequestsViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,6 +18,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    //Configuracao inicial
+    UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
+    UINavigationController *repoNavigationController = [splitViewController.viewControllers objectAtIndex:0];
+    RepositoriesViewController *reposViewController = (RepositoriesViewController *)[repoNavigationController topViewController];
+    UINavigationController *pullReqsNavigationController = [splitViewController.viewControllers objectAtIndex:1];
+    PullRequestsViewController *pullRequestsViewController = (PullRequestsViewController *)[pullReqsNavigationController topViewController];
+    
+    pullRequestsViewController.navigationItem.leftItemsSupplementBackButton = YES;
+    pullRequestsViewController.navigationItem.leftBarButtonItem = [splitViewController displayModeButtonItem];
+    
+    reposViewController.delegate = pullRequestsViewController;
     
     return YES;
 }

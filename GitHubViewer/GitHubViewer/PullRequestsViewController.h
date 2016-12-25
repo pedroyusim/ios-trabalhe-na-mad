@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RepositoryControllerDelegate.h"
 
-@interface PullRequestsViewController : UIViewController
+@interface PullRequestsViewController : UIViewController <RepositoryControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+
+@property (strong, nonatomic) IBOutlet UILabel *labelFirstSelection;
+
+@property (strong, nonatomic) IBOutlet UITableView *tableViewPullRequests;
 
 @end
